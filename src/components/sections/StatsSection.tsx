@@ -59,11 +59,11 @@ const contentStats = [
 ];
 
 const topContent = [
-  { title: "Turn ChatGPT into your personal AI coach", views: 52400, upvotes: 2100, type: "prompt" },
-  { title: "Ultra-modern Geometry Logos", views: 38900, upvotes: 1800, type: "image" },
-  { title: "One-Click Personal Trainer", views: 24300, upvotes: 1200, type: "prompt" },
-  { title: "Automated Content Calendar", views: 18700, upvotes: 890, type: "automation" },
-  { title: "2D Chibi-Style Stickers", views: 15200, upvotes: 720, type: "image" },
+  { title: "Transforme o ChatGPT no seu coach pessoal de IA", views: 52400, upvotes: 2100, type: "prompt" },
+  { title: "Logos Geométricos Ultra-modernos", views: 38900, upvotes: 1800, type: "image" },
+  { title: "Personal Trainer com Um Clique", views: 24300, upvotes: 1200, type: "prompt" },
+  { title: "Calendário de Conteúdo Automatizado", views: 18700, upvotes: 890, type: "automation" },
+  { title: "Stickers Estilo Chibi 2D", views: 15200, upvotes: 720, type: "image" },
 ];
 
 export const StatsSection = () => {
@@ -158,8 +158,8 @@ export const StatsSection = () => {
           <div className="grid grid-cols-12 gap-4 border-b border-border bg-secondary/30 px-5 py-3 text-sm font-medium text-muted-foreground">
             <div className="col-span-1">#</div>
             <div className="col-span-6">Título</div>
-            <div className="col-span-2 text-right">Views</div>
-            <div className="col-span-2 text-right">Upvotes</div>
+            <div className="col-span-2 text-right">Visualizações</div>
+            <div className="col-span-2 text-right">Curtidas</div>
             <div className="col-span-1 text-right">Tipo</div>
           </div>
           {topContent.map((item, idx) => (
