@@ -142,7 +142,7 @@ export const StatsSection = () => {
                     <p className="text-lg font-bold text-foreground">
                       {content.upvotes.toLocaleString()}
                     </p>
-                    <p className="text-xs text-muted-foreground">Upvotes</p>
+                    <p className="text-xs text-muted-foreground">Curtidas</p>
                   </div>
                 </div>
               </div>
