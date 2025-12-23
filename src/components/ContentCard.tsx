@@ -30,13 +30,13 @@ const typeConfig = {
   },
   image: {
     icon: ImageIcon,
-    label: "Imagem",
+    label: "Image",
     bgColor: "bg-badge-image-bg",
     textColor: "text-badge-image",
   },
   automation: {
     icon: Zap,
-    label: "Automação",
+    label: "Automation",
     bgColor: "bg-badge-automation-bg",
     textColor: "text-badge-automation",
   },
@@ -67,7 +67,7 @@ export const ContentCard = ({ item, index }: ContentCardProps) => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="group relative cursor-pointer overflow-hidden rounded-xl bg-card border border-border shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-primary/30">
+      <div className="group relative cursor-pointer overflow-hidden rounded-xl bg-card shadow-card transition-all duration-300 hover:shadow-card-hover">
         {/* Gradient Background Container */}
         <div 
           className={cn("relative overflow-hidden", aspectRatio)}
@@ -114,7 +114,7 @@ export const ContentCard = ({ item, index }: ContentCardProps) => {
               isHovered ? "translate-y-0 opacity-100" : "-translate-y-2 opacity-0"
             )}
           >
-            <button className="flex h-8 w-8 items-center justify-center rounded-full bg-background/90 text-foreground shadow-sm transition-all hover:bg-background hover:scale-110">
+            <button className="flex h-8 w-8 items-center justify-center rounded-full bg-white/90 text-foreground shadow-sm transition-all hover:bg-white hover:scale-110">
               <ArrowUp className="h-4 w-4" />
             </button>
             <button 
@@ -126,7 +126,7 @@ export const ContentCard = ({ item, index }: ContentCardProps) => {
                 "flex h-8 w-8 items-center justify-center rounded-full shadow-sm transition-all hover:scale-110",
                 isBookmarked 
                   ? "bg-primary text-primary-foreground" 
-                  : "bg-background/90 text-foreground hover:bg-background"
+                  : "bg-white/90 text-foreground hover:bg-white"
               )}
             >
               <Bookmark className={cn("h-4 w-4", isBookmarked && "fill-current")} />

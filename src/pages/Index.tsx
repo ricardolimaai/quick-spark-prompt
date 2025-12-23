@@ -7,7 +7,7 @@ import { categories, generateMockData, sectionConfig } from "@/data/mockData";
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState("home");
-  const [activeCategory, setActiveCategory] = useState("Todos");
+  const [activeCategory, setActiveCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
 
   const mockData = useMemo(() => generateMockData(24), []);
@@ -42,10 +42,10 @@ const Index = () => {
   // Get categories based on section
   const sectionCategories = useMemo(() => {
     if (activeSection === "images") {
-      return ["Todos", "Abstrato", "Anime", "Arquitetura", "Arte", "Cartoon", "Paisagens Urbanas", "Criaturas", "Digital", "Fantasia", "Moda", "Comida", "Terror", "Paisagens", "Minimalismo", "Música", "Mitologia", "Natureza", "Pessoas", "Fotografia", "Realismo", "Ficção Científica", "Espaço", "Surrealismo", "Tecnologia"];
+      return ["All", "Abstract", "Anime", "Architecture", "Artwork", "Cartoon", "Cityscapes", "Creatures", "Digital", "Fantasy", "Fashion", "Food", "Horror", "Landscapes", "Minimalism", "Music", "Mythology", "Nature", "People", "Photography", "Realism", "Sci-Fi", "Space", "Surrealism", "Technology"];
     }
     if (activeSection === "automations") {
-      return ["Todos", "Agentes IA", "CMS / CRM", "Colaboração", "Comunicação / TI", "Conteúdo e Arquivos", "Dados", "E-Commerce", "Financeiro", "Marketing", "Produtividade", "QA", "Vendas", "Controle de Tempo", "Fluxo de Trabalho"];
+      return ["All", "AI Agents", "CMS / CRM", "Collaboration", "Communication / IT", "Content & Files", "Data", "E-Commerce", "Financial", "Marketing", "Productivity", "QA", "Sales", "Time-Tracking", "Workflow"];
     }
     return categories;
   }, [activeSection]);
