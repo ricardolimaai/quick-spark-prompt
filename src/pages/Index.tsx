@@ -3,6 +3,9 @@ import { Sidebar } from "@/components/Sidebar";
 import { CategoryBar } from "@/components/CategoryBar";
 import { SearchBar } from "@/components/SearchBar";
 import { ContentGrid } from "@/components/ContentGrid";
+import { CreateSection } from "@/components/sections/CreateSection";
+import { DocsSection } from "@/components/sections/DocsSection";
+import { StatsSection } from "@/components/sections/StatsSection";
 import { categories, generateMockData, sectionConfig } from "@/data/mockData";
 
 const Index = () => {
@@ -25,6 +28,12 @@ const Index = () => {
       data = data.filter((item) => item.type === "automation");
     }
 
+    // Filter by category
+    if (activeCategory !== "All") {
+      // For demo, just return fewer items when filtering
+      data = data.slice(0, Math.max(4, data.length / 2));
+    }
+
     // Filter by search query
     if (searchQuery) {
       const query = searchQuery.toLowerCase();
@@ -36,7 +45,7 @@ const Index = () => {
     }
 
     return data;
-  }, [mockData, activeSection, searchQuery]);
+  }, [mockData, activeSection, activeCategory, searchQuery]);
 
   const config = sectionConfig[activeSection as keyof typeof sectionConfig] || sectionConfig.home;
 
@@ -51,6 +60,9 @@ const Index = () => {
     return categories;
   }, [activeSection]);
 
+  // Check if section shows content grid or special section
+  const isContentSection = ["home", "prompts", "images", "automations"].includes(activeSection);
+
   return (
     <div className="min-h-screen bg-background">
       {/* Sidebar */}
@@ -63,22 +75,32 @@ const Index = () => {
 
       {/* Main Content */}
       <main className={`transition-all duration-300 ${sidebarExpanded ? "ml-[220px]" : "ml-[60px]"}`}>
-        {/* Category Bar */}
-        <CategoryBar
-          categories={sectionCategories}
-          activeCategory={activeCategory}
-          onCategoryChange={setActiveCategory}
-        />
+        {isContentSection ? (
+          <>
+            {/* Category Bar */}
+            <CategoryBar
+              categories={sectionCategories}
+              activeCategory={activeCategory}
+              onCategoryChange={setActiveCategory}
+            />
 
-        {/* Search Bar */}
-        <SearchBar value={searchQuery} onChange={setSearchQuery} />
+            {/* Search Bar */}
+            <SearchBar value={searchQuery} onChange={setSearchQuery} />
 
-        {/* Content Grid */}
-        <ContentGrid
-          items={filteredData}
-          title={config.title}
-          description={config.description}
-        />
+            {/* Content Grid */}
+            <ContentGrid
+              items={filteredData}
+              title={config.title}
+              description={config.description}
+            />
+          </>
+        ) : (
+          <>
+            {activeSection === "create" && <CreateSection />}
+            {activeSection === "docs" && <DocsSection />}
+            {activeSection === "stats" && <StatsSection />}
+          </>
+        )}
       </main>
     </div>
   );
