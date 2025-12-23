@@ -117,7 +117,7 @@ export const DocsSection = () => {
                         <button className="flex w-full items-center justify-between rounded-lg p-3 text-left transition-colors hover:bg-secondary">
                           <span className="text-sm text-foreground">{article.title}</span>
                           <span className="text-xs text-muted-foreground">
-                            {article.views.toLocaleString()} views
+                            {article.views.toLocaleString()} visualizações
                           </span>
                         </button>
                       </li>
