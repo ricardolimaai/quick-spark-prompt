@@ -9,6 +9,7 @@ const Index = () => {
   const [activeSection, setActiveSection] = useState("home");
   const [activeCategory, setActiveCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
+  const [sidebarExpanded, setSidebarExpanded] = useState(false);
 
   const mockData = useMemo(() => generateMockData(24), []);
 
@@ -53,10 +54,15 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Sidebar */}
-      <Sidebar activeSection={activeSection} onSectionChange={setActiveSection} />
+      <Sidebar 
+        activeSection={activeSection} 
+        onSectionChange={setActiveSection}
+        isExpanded={sidebarExpanded}
+        onToggle={() => setSidebarExpanded(!sidebarExpanded)}
+      />
 
       {/* Main Content */}
-      <main className="ml-[60px]">
+      <main className={`transition-all duration-300 ${sidebarExpanded ? "ml-[220px]" : "ml-[60px]"}`}>
         {/* Category Bar */}
         <CategoryBar
           categories={sectionCategories}
