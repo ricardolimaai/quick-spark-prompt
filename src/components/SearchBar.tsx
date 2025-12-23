@@ -14,7 +14,7 @@ export const SearchBar = ({ value, onChange }: SearchBarProps) => {
           type="text"
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          placeholder="Search prompts, images, automations..."
+          placeholder="Buscar prompts, imagens, automações..."
           className="h-11 w-full rounded-xl border border-border bg-card pl-11 pr-4 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all"
         />
       </div>
