@@ -39,7 +39,7 @@ export const Sidebar = ({ activeSection, onSectionChange, isExpanded, onToggle }
           isExpanded ? "w-full px-2 py-2" : "h-10 w-10 justify-center"
         )}
       >
-        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#c8f560]">
+        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#c1ff72]">
           <Code2 className="h-5 w-5 text-black" />
         </div>
         {isExpanded && (
@@ -70,7 +70,9 @@ export const Sidebar = ({ activeSection, onSectionChange, isExpanded, onToggle }
               )}
               title={!isExpanded ? item.label : undefined}
             >
-              <Icon className="h-5 w-5 flex-shrink-0" />
+              <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#c1ff72]">
+                <Icon className="h-4 w-4 text-black flex-shrink-0" />
+              </div>
               
               {isExpanded && (
                 <span className="text-sm font-medium">{item.label}</span>
@@ -95,7 +97,9 @@ export const Sidebar = ({ activeSection, onSectionChange, isExpanded, onToggle }
           )}
           title={!isExpanded ? "Create/Sell" : undefined}
         >
-          <Plus className="h-5 w-5 flex-shrink-0" />
+          <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-black">
+            <Plus className="h-4 w-4 text-[#c1ff72] flex-shrink-0" />
+          </div>
           {isExpanded && (
             <>
               <span className="text-sm font-medium flex-1">Create/Sell</span>
@@ -129,7 +133,9 @@ export const Sidebar = ({ activeSection, onSectionChange, isExpanded, onToggle }
               )}
               title={!isExpanded ? item.label : undefined}
             >
-              <Icon className="h-5 w-5 flex-shrink-0" />
+              <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#c1ff72]">
+                <Icon className="h-4 w-4 text-black flex-shrink-0" />
+              </div>
               
               {isExpanded && (
                 <span className="text-sm font-medium">{item.label}</span>
@@ -152,8 +158,8 @@ export const Sidebar = ({ activeSection, onSectionChange, isExpanded, onToggle }
           )}
           title={!isExpanded ? "Login" : undefined}
         >
-          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-sidebar-accent">
-            <LogIn className="h-4 w-4" />
+          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#c1ff72]">
+            <LogIn className="h-4 w-4 text-black" />
           </div>
           {isExpanded && (
             <div className="flex flex-col items-start">
