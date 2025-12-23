@@ -30,13 +30,13 @@ const typeConfig = {
   },
   image: {
     icon: ImageIcon,
-    label: "Image",
+    label: "Imagem",
     bgColor: "bg-badge-image-bg",
     textColor: "text-badge-image",
   },
   automation: {
     icon: Zap,
-    label: "Automation",
+    label: "Automação",
     bgColor: "bg-badge-automation-bg",
     textColor: "text-badge-automation",
   },

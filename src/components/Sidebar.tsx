@@ -9,15 +9,15 @@ interface SidebarProps {
 }
 
 const menuItems = [
-  { id: "home", icon: Home, label: "Home" },
+  { id: "home", icon: Home, label: "Início" },
   { id: "prompts", icon: Sparkles, label: "Prompts" },
-  { id: "images", icon: Image, label: "AI Images" },
-  { id: "automations", icon: Zap, label: "Automations" },
+  { id: "images", icon: Image, label: "Imagens IA" },
+  { id: "automations", icon: Zap, label: "Automações" },
 ];
 
 const bottomMenuItems = [
-  { id: "docs", icon: BookOpen, label: "Knowledge Base" },
-  { id: "stats", icon: BarChart3, label: "Library" },
+  { id: "docs", icon: BookOpen, label: "Base de Conhecimento" },
+  { id: "stats", icon: BarChart3, label: "Biblioteca" },
 ];
 
 export const Sidebar = ({ activeSection, onSectionChange, isExpanded, onToggle }: SidebarProps) => {
@@ -91,20 +91,20 @@ export const Sidebar = ({ activeSection, onSectionChange, isExpanded, onToggle }
             "group relative flex items-center gap-3 rounded-xl bg-primary text-primary-foreground transition-all duration-200 hover:bg-primary/90",
             isExpanded ? "px-3 py-2.5 mt-2" : "h-10 w-10 justify-center mt-2"
           )}
-          title={!isExpanded ? "Create/Sell" : undefined}
+          title={!isExpanded ? "Criar/Vender" : undefined}
         >
           <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-black">
             <Plus className="h-4 w-4 text-[#c1ff72] flex-shrink-0" />
           </div>
           {isExpanded && (
             <>
-              <span className="text-sm font-medium flex-1">Create/Sell</span>
+              <span className="text-sm font-medium flex-1">Criar/Vender</span>
               <ChevronRight className="h-4 w-4" />
             </>
           )}
           {!isExpanded && (
             <span className="absolute left-14 hidden whitespace-nowrap rounded-md bg-foreground px-2 py-1 text-xs text-background group-hover:block z-50">
-              Create/Sell
+              Criar/Vender
             </span>
           )}
         </button>
