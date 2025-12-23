@@ -1,7 +1,5 @@
 import { Home, Sparkles, Image, Zap, Plus, BookOpen, BarChart3, LogIn, Code2, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
-import logoIcon from "@/assets/logo-icon.png";
-import logoText from "@/assets/logo-text.png";
 
 interface SidebarProps {
   activeSection: string;
@@ -43,11 +41,9 @@ export const Sidebar = ({ activeSection, onSectionChange, isExpanded, onToggle }
           <Code2 className="h-5 w-5 text-black" />
         </div>
         {isExpanded && (
-          <img 
-            src={logoText} 
-            alt="Código do Poder" 
-            className="h-5 object-contain"
-          />
+          <span className="font-computer text-lg text-[#c1ff72] leading-tight">
+            Prompt Pronto
+          </span>
         )}
       </button>
 
