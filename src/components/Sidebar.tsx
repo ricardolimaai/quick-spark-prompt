@@ -1,34 +1,58 @@
-import { Home, Sparkles, Image, Zap, Plus, BookOpen, BarChart3, LogIn } from "lucide-react";
+import { Home, Sparkles, Image, Zap, Plus, BookOpen, BarChart3, LogIn, Code2, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import logoIcon from "@/assets/logo-icon.png";
+import logoText from "@/assets/logo-text.png";
 
 interface SidebarProps {
   activeSection: string;
   onSectionChange: (section: string) => void;
+  isExpanded: boolean;
+  onToggle: () => void;
 }
 
 const menuItems = [
   { id: "home", icon: Home, label: "Home" },
   { id: "prompts", icon: Sparkles, label: "Prompts" },
-  { id: "images", icon: Image, label: "Images" },
+  { id: "images", icon: Image, label: "AI Images" },
   { id: "automations", icon: Zap, label: "Automations" },
-  { id: "create", icon: Plus, label: "Create" },
-  { id: "docs", icon: BookOpen, label: "Documentation" },
-  { id: "stats", icon: BarChart3, label: "Statistics" },
 ];
 
-export const Sidebar = ({ activeSection, onSectionChange }: SidebarProps) => {
+const bottomMenuItems = [
+  { id: "docs", icon: BookOpen, label: "Knowledge Base" },
+  { id: "stats", icon: BarChart3, label: "Library" },
+];
+
+export const Sidebar = ({ activeSection, onSectionChange, isExpanded, onToggle }: SidebarProps) => {
+
   return (
-    <aside className="fixed left-0 top-0 z-40 h-screen w-[60px] border-r border-sidebar-border bg-sidebar flex flex-col items-center py-4">
-      {/* Logo */}
+    <aside 
+      className={cn(
+        "fixed left-0 top-0 z-40 h-screen border-r border-sidebar-border bg-sidebar flex flex-col py-4 transition-all duration-300",
+        isExpanded ? "w-[220px] px-3" : "w-[60px] items-center"
+      )}
+    >
+      {/* Toggle Button with Code Icon */}
       <button 
-        onClick={() => onSectionChange("home")}
-        className="mb-6 flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-primary-foreground transition-transform hover:scale-105"
+        onClick={onToggle}
+        className={cn(
+          "mb-4 flex items-center gap-3 rounded-xl transition-all duration-200 hover:bg-sidebar-accent",
+          isExpanded ? "w-full px-2 py-2" : "h-10 w-10 justify-center"
+        )}
       >
-        <Sparkles className="h-5 w-5" />
+        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#c8f560]">
+          <Code2 className="h-5 w-5 text-black" />
+        </div>
+        {isExpanded && (
+          <img 
+            src={logoText} 
+            alt="Código do Poder" 
+            className="h-5 object-contain"
+          />
+        )}
       </button>
 
-      {/* Navigation */}
-      <nav className="flex flex-1 flex-col items-center gap-2">
+      {/* Main Navigation */}
+      <nav className="flex flex-1 flex-col gap-1">
         {menuItems.map((item) => {
           const Icon = item.icon;
           const isActive = activeSection === item.id;
@@ -38,31 +62,112 @@ export const Sidebar = ({ activeSection, onSectionChange }: SidebarProps) => {
               key={item.id}
               onClick={() => onSectionChange(item.id)}
               className={cn(
-                "group relative flex h-10 w-10 items-center justify-center rounded-xl transition-all duration-200",
+                "group relative flex items-center gap-3 rounded-xl transition-all duration-200",
+                isExpanded ? "px-3 py-2.5" : "h-10 w-10 justify-center",
                 isActive
                   ? "bg-sidebar-accent text-sidebar-accent-foreground"
                   : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
               )}
-              title={item.label}
+              title={!isExpanded ? item.label : undefined}
             >
-              <Icon className="h-5 w-5" />
+              <Icon className="h-5 w-5 flex-shrink-0" />
               
-              {/* Tooltip */}
-              <span className="absolute left-14 hidden whitespace-nowrap rounded-md bg-foreground px-2 py-1 text-xs text-background group-hover:block">
-                {item.label}
-              </span>
+              {isExpanded && (
+                <span className="text-sm font-medium">{item.label}</span>
+              )}
+              
+              {/* Tooltip for collapsed state */}
+              {!isExpanded && (
+                <span className="absolute left-14 hidden whitespace-nowrap rounded-md bg-foreground px-2 py-1 text-xs text-background group-hover:block z-50">
+                  {item.label}
+                </span>
+              )}
             </button>
           );
         })}
+
+        {/* Create/Sell Button */}
+        <button
+          onClick={() => onSectionChange("create")}
+          className={cn(
+            "group relative flex items-center gap-3 rounded-xl bg-primary text-primary-foreground transition-all duration-200 hover:bg-primary/90",
+            isExpanded ? "px-3 py-2.5 mt-2" : "h-10 w-10 justify-center mt-2"
+          )}
+          title={!isExpanded ? "Create/Sell" : undefined}
+        >
+          <Plus className="h-5 w-5 flex-shrink-0" />
+          {isExpanded && (
+            <>
+              <span className="text-sm font-medium flex-1">Create/Sell</span>
+              <ChevronRight className="h-4 w-4" />
+            </>
+          )}
+          {!isExpanded && (
+            <span className="absolute left-14 hidden whitespace-nowrap rounded-md bg-foreground px-2 py-1 text-xs text-background group-hover:block z-50">
+              Create/Sell
+            </span>
+          )}
+        </button>
       </nav>
 
-      {/* Bottom - Login */}
-      <button
-        className="flex h-10 w-10 items-center justify-center rounded-xl text-sidebar-foreground transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
-        title="Login"
-      >
-        <LogIn className="h-5 w-5" />
-      </button>
+      {/* Bottom Section */}
+      <div className="flex flex-col gap-1 mt-4 pt-4 border-t border-sidebar-border">
+        {bottomMenuItems.map((item) => {
+          const Icon = item.icon;
+          const isActive = activeSection === item.id;
+          
+          return (
+            <button
+              key={item.id}
+              onClick={() => onSectionChange(item.id)}
+              className={cn(
+                "group relative flex items-center gap-3 rounded-xl transition-all duration-200",
+                isExpanded ? "px-3 py-2.5" : "h-10 w-10 justify-center",
+                isActive
+                  ? "bg-sidebar-accent text-sidebar-accent-foreground"
+                  : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+              )}
+              title={!isExpanded ? item.label : undefined}
+            >
+              <Icon className="h-5 w-5 flex-shrink-0" />
+              
+              {isExpanded && (
+                <span className="text-sm font-medium">{item.label}</span>
+              )}
+              
+              {!isExpanded && (
+                <span className="absolute left-14 hidden whitespace-nowrap rounded-md bg-foreground px-2 py-1 text-xs text-background group-hover:block z-50">
+                  {item.label}
+                </span>
+              )}
+            </button>
+          );
+        })}
+
+        {/* User/Login Section */}
+        <button
+          className={cn(
+            "group relative flex items-center gap-3 rounded-xl text-sidebar-foreground transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground mt-2",
+            isExpanded ? "px-3 py-2.5" : "h-10 w-10 justify-center"
+          )}
+          title={!isExpanded ? "Login" : undefined}
+        >
+          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-sidebar-accent">
+            <LogIn className="h-4 w-4" />
+          </div>
+          {isExpanded && (
+            <div className="flex flex-col items-start">
+              <span className="text-sm font-medium">Login</span>
+              <span className="text-xs text-muted-foreground">Entrar na conta</span>
+            </div>
+          )}
+          {!isExpanded && (
+            <span className="absolute left-14 hidden whitespace-nowrap rounded-md bg-foreground px-2 py-1 text-xs text-background group-hover:block z-50">
+              Login
+            </span>
+          )}
+        </button>
+      </div>
     </aside>
   );
 };
