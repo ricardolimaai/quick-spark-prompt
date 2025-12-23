@@ -1,5 +1,6 @@
 import { Home, Sparkles, Image, Zap, Plus, BookOpen, BarChart3, LogIn } from "lucide-react";
 import { cn } from "@/lib/utils";
+import logo from "@/assets/logo.png";
 
 interface SidebarProps {
   activeSection: string;
@@ -7,13 +8,13 @@ interface SidebarProps {
 }
 
 const menuItems = [
-  { id: "home", icon: Home, label: "Home" },
+  { id: "home", icon: Home, label: "Início" },
   { id: "prompts", icon: Sparkles, label: "Prompts" },
-  { id: "images", icon: Image, label: "Images" },
-  { id: "automations", icon: Zap, label: "Automations" },
-  { id: "create", icon: Plus, label: "Create" },
-  { id: "docs", icon: BookOpen, label: "Documentation" },
-  { id: "stats", icon: BarChart3, label: "Statistics" },
+  { id: "images", icon: Image, label: "Imagens" },
+  { id: "automations", icon: Zap, label: "Automações" },
+  { id: "create", icon: Plus, label: "Criar" },
+  { id: "docs", icon: BookOpen, label: "Documentação" },
+  { id: "stats", icon: BarChart3, label: "Estatísticas" },
 ];
 
 export const Sidebar = ({ activeSection, onSectionChange }: SidebarProps) => {
@@ -22,9 +23,9 @@ export const Sidebar = ({ activeSection, onSectionChange }: SidebarProps) => {
       {/* Logo */}
       <button 
         onClick={() => onSectionChange("home")}
-        className="mb-6 flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-primary-foreground transition-transform hover:scale-105"
+        className="mb-6 flex h-10 w-10 items-center justify-center rounded-xl transition-transform hover:scale-105 overflow-hidden"
       >
-        <Sparkles className="h-5 w-5" />
+        <img src={logo} alt="Código do Poder" className="h-10 w-10 object-contain" />
       </button>
 
       {/* Navigation */}
@@ -48,7 +49,7 @@ export const Sidebar = ({ activeSection, onSectionChange }: SidebarProps) => {
               <Icon className="h-5 w-5" />
               
               {/* Tooltip */}
-              <span className="absolute left-14 hidden whitespace-nowrap rounded-md bg-foreground px-2 py-1 text-xs text-background group-hover:block">
+              <span className="absolute left-14 hidden whitespace-nowrap rounded-md bg-card border border-border px-2 py-1 text-xs text-foreground group-hover:block z-50">
                 {item.label}
               </span>
             </button>
@@ -59,7 +60,7 @@ export const Sidebar = ({ activeSection, onSectionChange }: SidebarProps) => {
       {/* Bottom - Login */}
       <button
         className="flex h-10 w-10 items-center justify-center rounded-xl text-sidebar-foreground transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
-        title="Login"
+        title="Entrar"
       >
         <LogIn className="h-5 w-5" />
       </button>
