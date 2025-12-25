@@ -59,7 +59,7 @@ export const Sidebar = ({
                 <Icon className="h-4 w-4 text-black flex-shrink-0" />
               </div>
               
-              {isExpanded && <span className="text-sm font-medium">{item.label}</span>}
+              {isExpanded && <span className="text-sm font-medium font-mono">{item.label}</span>}
               
               {/* Tooltip for collapsed state */}
               {!isExpanded && <span className="absolute left-14 hidden whitespace-nowrap rounded-md bg-foreground px-2 py-1 text-xs text-background group-hover:block z-50">
@@ -74,7 +74,7 @@ export const Sidebar = ({
             <Plus className="h-4 w-4 text-[#c1ff72] flex-shrink-0" />
           </div>
           {isExpanded && <>
-              <span className="text-sm font-medium flex-1">Criar/Vender</span>
+              <span className="text-sm font-medium flex-1 font-mono">Criar/Vender</span>
               <ChevronRight className="h-4 w-4" />
             </>}
           {!isExpanded && <span className="absolute left-14 hidden whitespace-nowrap rounded-md bg-foreground px-2 py-1 text-xs text-background group-hover:block z-50">
@@ -93,7 +93,7 @@ export const Sidebar = ({
                 <Icon className="h-4 w-4 text-black flex-shrink-0" />
               </div>
               
-              {isExpanded && <span className="text-sm font-medium">{item.label}</span>}
+              {isExpanded && <span className="font-medium font-mono text-xs">{item.label}</span>}
               
               {!isExpanded && <span className="absolute left-14 hidden whitespace-nowrap rounded-md bg-foreground px-2 py-1 text-xs text-background group-hover:block z-50">
                   {item.label}
