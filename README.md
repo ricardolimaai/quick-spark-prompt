@@ -29,3 +29,6 @@ npm run dev
 
 Built as a tool to organize and share prompt engineering work. Useful for AI practitioners who want to catalog and discover effective prompts across different models and use cases.
 
+## License
+
+MIT
